@@ -12,17 +12,22 @@ import {structureTool} from 'sanity/structure'
 import {apiVersion, dataset, projectId} from './sanity/env'
 import {schema} from './sanity/schemaTypes'
 import {structure} from './sanity/structure'
+import { RocketIcon } from '@sanity/icons'
 
 export default defineConfig({
   basePath: '/studio',
   projectId,
   dataset,
+  title: 'NextGen Portfolio',
+  subtitle: 'Content Management System',
+  //custom icon
+  icon: RocketIcon,
   // Add and edit the content schema in the './sanity/schemaTypes' folder
   schema,
   plugins: [
-    structureTool({structure}),
+    structureTool({structure, title:'Content'}),
     // Vision is for querying with GROQ from inside the Studio
     // https://www.sanity.io/docs/the-vision-plugin
-    visionTool({defaultApiVersion: apiVersion}),
+    visionTool({defaultApiVersion: apiVersion, title:'GROQ'}),
   ],
 })

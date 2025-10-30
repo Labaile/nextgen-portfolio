@@ -29,4 +29,4 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     siteSettings,
     navigation,
   ],
-}
+};

@@ -1,5 +1,16 @@
-export function AppSidebar({ side = "left" }: { side?: "left" | "right" }) {
-  return null;
+import { Suspense } from "react";
+import { Sidebar, SidebarContent, SidebarRail } from "@/components/ui/sidebar";
+import ChatWrapper from "@/components/chat/ChatWrapper";
+
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  return (
+    <Sidebar {...props}>
+      <SidebarContent className="h-full w-full bg-white">
+        <Suspense fallback={<div>Loading...</div>}>
+          <ChatWrapper />
+        </Suspense>
+      </SidebarContent>
+      <SidebarRail />
+    </Sidebar>
+  );
 }
-
-

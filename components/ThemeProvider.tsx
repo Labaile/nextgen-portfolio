@@ -11,5 +11,3 @@ type ThemeProviderProps = {
 export function ThemeProvider({ children }: ThemeProviderProps) {
   return children as any;
 }
-
-

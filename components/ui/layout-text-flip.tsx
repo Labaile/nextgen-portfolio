@@ -1,46 +1,61 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
-type LayoutTextFlipProps = {
+export const LayoutTextFlip = ({
+  text = "Build Amazing",
+  words = ["Landing Pages", "Component Blocks", "Page Sections", "3D Shaders"],
+  duration = 3000,
+  className,
+}: {
   text: string;
   words: string[];
   duration?: number;
   className?: string;
-};
-
-export function LayoutTextFlip({
-  text,
-  words,
-  duration = 3000,
-  className,
-}: LayoutTextFlipProps) {
-  const safeWords = useMemo(() => (Array.isArray(words) && words.length > 0 ? words : [""]), [words]);
-  const [idx, setIdx] = useState(0);
+}) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    if (safeWords.length <= 1) return;
-    const id = setInterval(() => {
-      setIdx((i) => (i + 1) % safeWords.length);
-    }, Math.max(800, duration));
-    return () => clearInterval(id);
-  }, [safeWords.length, duration]);
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % words.length);
+    }, duration);
+
+    return () => clearInterval(interval);
+  }, [duration, words.length]);
 
   return (
-    <div className={cn("flex items-baseline gap-2", className)}>
-      <span>{text}</span>
-      <span className="relative inline-block min-w-[6ch]">
-        <span
-          key={idx}
-          className={
-            "absolute left-0 top-0 will-change-transform transition-opacity duration-500 ease-out opacity-100"
-          }
-        >
-          {safeWords[idx]}
-        </span>
-      </span>
-    </div>
+    <span className={cn("inline-flex flex-wrap items-center gap-2", className)}>
+      <motion.span layoutId="subtext" className="inline-block">
+        {text}
+      </motion.span>
+
+      <motion.span
+        layout
+        className="relative inline-block overflow-hidden rounded-lg border border-primary/20 bg-primary/10 px-3 py-1 backdrop-blur-sm"
+      >
+        <AnimatePresence mode="popLayout">
+          <motion.span
+            key={currentIndex}
+            initial={{ y: -40, filter: "blur(10px)", opacity: 0 }}
+            animate={{
+              y: 0,
+              filter: "blur(0px)",
+              opacity: 1,
+            }}
+            exit={{ y: 50, filter: "blur(10px)", opacity: 0 }}
+            transition={{
+              duration: 0.5,
+              ease: "easeInOut",
+            }}
+            className={cn(
+              "inline-block whitespace-nowrap font-semibold text-primary",
+            )}
+          >
+            {words[currentIndex]}
+          </motion.span>
+        </AnimatePresence>
+      </motion.span>
+    </span>
   );
-}
-
-
+};

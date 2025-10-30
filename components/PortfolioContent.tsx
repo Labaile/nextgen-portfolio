@@ -1,11 +1,10 @@
 import { HeroSection } from "@/components/sections/HeroSection";
 
-
-async function PortfolioContent () {
+async function PortfolioContent() {
   return (
     <>
-    <HeroSection />
-    {/* <AboutSection />
+      <HeroSection />
+      {/* <AboutSection />
     <TestimonialsSection />
     <SkillsSection />
     <ExperienceSection />
@@ -16,9 +15,8 @@ async function PortfolioContent () {
     <ServicesSection />
     <BlogSection />
     <ContactSection /> */}
-  </>
-    
+    </>
   );
 }
 
-export default PortfolioContent
+export default PortfolioContent;

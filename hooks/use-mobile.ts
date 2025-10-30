@@ -15,5 +15,3 @@ export function useIsMobile(breakpointPx: number = 768) {
 
   return isMobile;
 }
-
-

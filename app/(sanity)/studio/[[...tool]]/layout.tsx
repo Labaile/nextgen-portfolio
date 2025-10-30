@@ -1,16 +1,16 @@
-import { Metadata } from 'next';
-import React from 'react'
+import type { Metadata } from "next";
+import type React from "react";
 
 export const metadata: Metadata = {
-  title: 'NextGen Portfolio Studio',
-  description: 'NextGen Portfolio Studio',
+  title: "NextGen Portfolio Studio",
+  description: "NextGen Portfolio Studio",
 };
 
-const layout = ({children}: {children: React.ReactNode}) => {
+const layout = ({ children }: { children: React.ReactNode }) => {
   return (
-      <html lang="en">
-        <body>{children}</body>
-      </html>
+    <html lang="en">
+      <body>{children}</body>
+    </html>
   );
 };
 

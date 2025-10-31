@@ -4,7 +4,7 @@ import { useClerk, useUser } from "@clerk/nextjs";
 import { IconLogout, IconMenu2, IconX } from "@tabler/icons-react";
 import Link from "next/link";
 import { useState } from "react";
-import { DynamicIcon } from "./DynamicIcon";
+import { DynamicIcon } from "@/components/DynamicIcon";
 import { useSidebar } from "./ui/sidebar";
 
 interface NavItem {
